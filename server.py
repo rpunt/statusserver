@@ -16,6 +16,7 @@ globalRed = 0
 globalGreen = 0
 globalBlue = 0
 globalBrightness = 0.1
+globalStatus = 'free'
 
 # initialize the hat
 unicornhatmini = UnicornHATMini()
