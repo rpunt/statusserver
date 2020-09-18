@@ -1,0 +1,14 @@
+[Unit]
+Description = FreeBusy service
+After = multi-user.target
+
+[Service]
+#User = pi
+WorkingDirectory=/home/pi/unicorn-free-busy-server
+ExecStart = /usr/bin/python3 server.py
+Restart=always
+Environment=FLASK_CONFIG=production
+#Type = idle
+
+[Install]
+WantedBy = multi-user.target
