@@ -50,6 +50,15 @@ def setPixels(r, g, b, brightness=0.1):
     for y in range(u_height):
       unicornhatmini.set_pixel(x, y, r, g, b)
 
+def switchOff():
+  global blinkThread, globalBlue, globalGreen, globalRed
+  globalRed = 0
+  globalGreen = 0
+  globalBlue = 0
+  if blinkThread is not None:
+    blinkThread.do_run = False
+  unicornhatmini.clear()
+  unicornhatmini.off()
 
 @app.route("/")
 def index():
@@ -79,7 +88,6 @@ def action(command):
     cpu = CPUTemperature()
     return jsonify({
       'status': globalStatus,
-      'brightness': globalBrightness,
       'cpuTemp': cpu.temperature * 1.8 + 32,
       'height': u_height,
       'width': u_width
