@@ -7,6 +7,7 @@ from time import sleep
 import colorsys
 import math
 import time
+from gpiozero import CPUTemperature
 from unicornhatmini import UnicornHATMini
 from jsmin import jsmin
 
@@ -58,24 +59,31 @@ def index():
   }
   return render_template('index.html', **templateData)
 
-@app.route("/api/<status>")
-def action(status):
+@app.route("/api/<command>")
+def action(command):
   global globalStatus
-  if status == 'busy':
-    globalStatus = status
+  if command == 'busy':
+    globalStatus = command
     setColor(255, 0, 0)
-  if status == 'free': 
-    globalStatus = status
+  if command == 'free':
+    globalStatus = command
     setColor(0, 255, 0)
-  if status == 'away': 
-    globalStatus = status
+  if command == 'away':
+    globalStatus = command
     setColor(255, 191, 0)
-  if status == 'off': 
-    globalStatus = status
+  if command == 'off':
+    globalStatus = command
     unicornhatmini.clear()
     unicornhatmini.show()
-  if status == 'status': 
-    next
+  if command == 'status':
+    cpu = CPUTemperature()
+    return jsonify({
+      'status': globalStatus,
+      'brightness': globalBrightness,
+      'cpuTemp': cpu.temperature * 1.8 + 32,
+      'height': u_height,
+      'width': u_width
+    })
   return make_response(jsonify({'status': globalStatus}))
 
 @app.errorhandler(404)
@@ -84,3 +92,17 @@ def not_found(error):
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0', port=80, debug=False)
+
+# pulse it, eventually
+#import numpy as np
+#import time
+#import datetime
+#
+#brightness = np.arange(0.0, 0.4, 1/60)
+#while True:
+#  for x in brightness:
+#    print("brightness: ", x)
+#    time.sleep(1/30)
+#  for x in brightness[::-1]:
+#    print("brightness: ", x)
+#    time.sleep(1/15)
