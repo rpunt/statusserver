@@ -14,7 +14,7 @@ If you wish, you can stop `freebusy.service` and run `python3 test.py` to valida
 
 ## Usage
 
-Assuming the service started at boot you can hit several endpoints:
+Assuming the service started at boot, you can hit several endpoints:
 
 ```bash
 http://{your Pi IP}/api/status
