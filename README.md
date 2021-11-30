@@ -38,7 +38,11 @@ http://{your Pi IP}/api/off
 
 Anything on your local subnet can hit this API endpoint, which means your phone can trigger different states; I've found Shortcuts in iOS to be very adept at this sort of daily automation, especially when combined with Focus modes in iOS 15. Since iOS shortcuts are exposed to Siri, you can trigger state change by voice as well.
 
+Set the busy state.
+
 ![I'm busy](images/busy.jpg)
+
+Have a drink, you've worked hard.
 
 ![I'm done working](images/doneworking.jpg)
 
