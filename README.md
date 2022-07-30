@@ -4,7 +4,7 @@
 
 * A Raspiberry Pi Zero W
 * The user `pi` is present; if not, update [freebusy.service](freebusy.service)
-* Running Raspbian OS Buster
+* Running Raspbian OS Buster or newer
 * [A Unicorn HAT Mini](https://shop.pimoroni.com/products/unicorn-hat-mini)
 
 ## Setup
